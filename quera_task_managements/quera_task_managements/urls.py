@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from qtask.views import Taskview ,ProjectView
+from qtask.views import Taskview ,ProjectView,OwnerView,Tagview
 
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -44,9 +44,15 @@ urlpatterns = [
     path('playground/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('docs/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('admin/', admin.site.urls),
-    path("tasks",Taskview.as_view()),
-    path('tasks/<int:pk>',Taskview.as_view()),
-    path('projects',ProjectView.as_view()),
-    path('projects/<int:pk>',ProjectView.as_view())
+    path('tasks/<int:pk>/',Taskview.as_view()),
+    path('tasks/',Taskview.as_view()),
+    path('projects/',ProjectView.as_view()),
+    path('projects/<int:pk>/',ProjectView.as_view()),
+    path('owners',OwnerView.as_view()),
+    path('owners/<int:pk>',OwnerView.as_view()),
+    path('projects/<int:pk>/',OwnerView.as_view()),
+    path('tags/<int:pk>/',Tagview.as_view()),
+    path('tags/',Tagview.as_view()),
+
 
 ]
